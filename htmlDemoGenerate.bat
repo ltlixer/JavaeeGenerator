@@ -1,0 +1,1 @@
+java -cp j2eeGenerator.jar client.StaticGenerator

@@ -1,0 +1,166 @@
+<%@ page contentType="text/html; charset=GBK"%>
+
+<head>
+<!--  引入jquery的文件（如果check方法未定义，就去掉然后用easyui的表单验证）    -->
+
+<title>工作载体(公共户口、工作中、中途之家、就业基地)基础信息编辑页面</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	var vForm;
+	$(document).ready(function(){
+	//	var vForm=$("#ff").Validform({tiptype:3});
+			var vForm=$("#ff")
+	}); 
+	
+	function validSelect(obj){
+		$("input[name='"+$(obj).attr('id')+"']").attr('datatype',$(obj).attr('datatype'));
+		$("input[name='"+$(obj).attr('id')+"']").attr('errormsg',$(obj).attr('errormsg'));
+		$("input[name='"+$(obj).attr('id')+"']").attr('nullmsg',$(obj).attr('nullmsg'));
+		vForm.check(false);
+	}
+	
+   function subForm(){
+   	   $.post("updateResettleBase", $("#ff").serialize(),
+	   	function (data, textStatus){
+	   //		handlerExp(data);
+	      	var msg=data.message;
+	      	if(msg)
+	    	  alert(msg);
+	   }, "json");
+	   
+   }    
+       
+</script>
+
+
+	<form id="ff" method="post">
+		<input type="hidden" id="id" name="id" value="${resettleBase.id}" />
+		<table>
+				<tr>
+					<td>标识</td>
+					<td>
+						<input type="text" name="isRemoved" id="isRemoved" class="dfinput"
+						value="${resettleBase.isRemoved}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>录入时间</td>
+					<td>
+						<input type="text" name="birthday" plugin="datepicker"
+						value="${resettleBase.lts}" />
+					</td>
+				</tr>
+				<tr>
+					<td>载体类型(公共户口、工作中、中途之家、就业基地)</td>
+					<td>
+						<input type="text" name="typeCode" id="typeCode" class="dfinput"
+						value="${resettleBase.typeCode}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>载体类型中文</td>
+					<td>
+						<input type="text" name="typeText" id="typeText" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.typeText}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>所属单位</td>
+					<td>
+						<input type="text" name="suoshudanwei" id="suoshudanwei" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.suoshudanwei}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>名称</td>
+					<td>
+						<input type="text" name="mingcheng" id="mingcheng" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.mingcheng}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>地址</td>
+					<td>
+						<input type="text" name="dizhi" id="dizhi" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.dizhi}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>代表人</td>
+					<td>
+						<input type="text" name="daibiaoren" id="daibiaoren" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.daibiaoren}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>登记码</td>
+					<td>
+						<input type="text" name="dengjima" id="dengjima" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.dengjima}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>类别</td>
+					<td>
+						<input type="text" name="leibie" id="leibie" class="dfinput"
+						value="${resettleBase.leibie}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>联系方式</td>
+					<td>
+						<input type="text" name="lianxifangshi" id="lianxifangshi" class="dfinput easyui-validatebox"
+						data-options="required:true" value="${resettleBase.lianxifangshi}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>删除标识</td>
+					<td>
+						<input type="text" name="removed" id="removed" class="dfinput"
+						value="${resettleBase.removed}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>创建人</td>
+					<td>
+						<input type="text" name="createUserId" id="createUserId" class="dfinput"
+						value="${resettleBase.createUserId}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>创建人姓名</td>
+					<td>
+						<input type="text" name="createUserName" id="createUserName" class="dfinput"
+						value="${resettleBase.createUserName}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>所属区县</td>
+					<td>
+						<input type="text" name="quxianId" id="quxianId" class="dfinput"
+						value="${resettleBase.quxianId}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>所属区县名称</td>
+					<td>
+						<input type="text" name="quxianName" id="quxianName" class="dfinput"
+						value="${resettleBase.quxianName}" /> 
+					</td>
+				</tr>
+				<tr>
+					<td>备注</td>
+					<td>
+						<input type="text" name="remark" id="remark" class="dfinput"
+						value="${resettleBase.remark}" /> 
+					</td>
+				</tr>
+		</table>
+		<input name="" type="button" class="btn" value="确认保存"
+			onclick="subForm()" />
+	</form>
+</body>
+
